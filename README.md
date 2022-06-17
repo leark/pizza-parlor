@@ -58,6 +58,12 @@ Test1: "It should add topping to Pizza object"
 Code: myPizza.addTopping('extra cheese')
 Expected Output: Pizza { toppings: ["anchovies", "pineapple", "extra cheese"], size: "medium" }
 
+Describe: Pizza.prototype.setSize()
+
+Test1: "It should set size of Pizza object"
+Code: myPizza.setSize('large')
+Expected Output: Pizza { toppings: ["anchovies", "pineapple", "extra cheese"], size: "large" }
+
 ```
 
 ## License

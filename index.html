@@ -12,13 +12,54 @@
     <div id="header" class="row">
       <h1>Pizza Parlor</h1>
     </div>
-    <div id="mainContentDiv">
+    <div id="orderDiv">
       <div class="row">
-        <form>
-          <label></label>
-          <input />
-          <button class="btn btn-Danger">Order</button>
+        <form id="orderForm">
+          <div class="form-group">
+            <label>Topping</label>
+            <select id="topping">
+              <option id="Artichokes">Artichokes</option>
+              <option id="Arugula">Arugula</option>
+              <option id="Basil">Basil</option>
+              <option id="Bell Peppers">Bell Peppers</option> 
+              <option id="Black Olives">Black Olives</option> 
+              <option id="Chicken">Chicken</option>
+              <option id="Chorizo">Chorizo</option>
+              <option id="Feta Cheese">Feta Cheese</option>
+              <option id="Garlic">Garlic</option>
+              <option id="Ham">Ham</option>
+              <option id="Kabanos (Polish sausage)">Kabanos (Polish sausage)</option>
+              <option id="Kale">Kale</option>
+              <option id="Mozzarella">Mozzarella</option>
+              <option id="Mushroom (Portobello)">Mushroom (Portobello)</option>
+              <option id="Onion">Onion</option>
+              <option id="Pepperoni">Pepperoni</option>
+              <option id="Potato">Potato</option>
+              <option id="Prosciutto">Prosciutto</option>
+              <option id="Red Onions">Red Onions</option>
+              <option id="Rocket">Rocket</option>
+              <option id="Spinach">Spinach</option>
+              <option id="Tomatoes">Tomatoes</option>
+            </select>
+            <button id="addToppping" class="btn btn-dark">Add Topping</button>
+          </div>
+          <div class="form-group">
+            <label>Size</label>
+            <select id="size">
+              <option id="Small">Small</option>
+              <option id="Medium" default>Medium</option>
+              <option id="Large">Large</option>
+            </select>
+          </div>
+          <button id="order" class="btn btn-dark" type="submit" disabled>Order</button>
         </form>
+      </div>
+    </div>
+    <div>
+      <div class="row">
+        <h4>Currently Added Toppings</h4>
+        <ul id="currentlyAddedToppings">
+        </ul>
       </div>
     </div>
   </div>
