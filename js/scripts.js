@@ -6,11 +6,12 @@ function Pizza(toppings, size) {
   this.size = size;
   this.numberOfToppings = 0;
   this.customerName;
+  // base cost
+  this.cost = 4;
 }
 
 Pizza.prototype.calculateCost = function () {
-  // set base cost
-  let cost = 4;
+  let cost = this.cost;
   // each toppings cost $1
   cost += this.numberOfToppings;
 
@@ -27,6 +28,7 @@ Pizza.prototype.calculateCost = function () {
     default:
       console.log('Unknown Pizza Size');
   }
+  this.cost = cost;
   return cost;
 };
 
@@ -122,7 +124,8 @@ $(document).ready(function () {
     event.preventDefault();
     disableOrderButton();
     pizzaOrders.addOrder(pizza);
-    $('<li>' + pizza.customerName + '</li>').appendTo('#orderedPizzas');
+    updatePizzasOrdered(pizza, pizzaOrders);
+    // clear fields
     pizza = new Pizza([]);
   });
 });
@@ -141,6 +144,17 @@ function updateCurrentCost(pizza) {
 function updateCustomerName(pizza) {
   const name = $('#customerName').val();
   pizza.setCustomerName(name);
+}
+
+function updatePizzasOrdered(pizza, pizzaOrders) {
+  let order = $('<li></li>');
+  order.text(pizza.customerName);
+  let orderDetail = $('<ul></ul>');
+  orderDetail.attr('id', pizza.customerName + pizzaOrders.numberOfOrders - 1);
+  orderDetail.append($('<li>Toppings: ' + pizza.toppings + '</li>'));
+  orderDetail.append($('<li>Size: ' + pizza.size + '</li>'));
+  order.append(orderDetail);
+  $(order).appendTo('#orderedPizzas');
 }
 
 function enableOrderButton() {
