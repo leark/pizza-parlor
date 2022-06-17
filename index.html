@@ -9,14 +9,15 @@
 </head>
 <body>
   <div class="container">
-    <div id="header" class="row">
-      <h1>Pizza Parlor</h1>
+    <div id="header" class="jumbotron row">
+      <h1>Lee's Pizza Parlor</h1>
     </div>
     <div id="orderDiv">
+      <h3>Order your pick-up pizza!</h3>
       <div class="row">
-        <form id="orderForm">
+        <form id="orderForm" class="col-sm-12 text-center">
           <div class="form-group">
-            <label>Customer Name</label>
+            <label>Your Name</label>
             <input id="customerName" type="text" required/>
           </div>
           <div class="form-group">
@@ -65,7 +66,7 @@
     </div>
     <div>
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6 text-center">
           <h4>Currently Added Toppings</h4>
           <h8>You can click on toppings that appear here to remove them</h5>
           <ul id="currentlyAddedToppings">
@@ -73,7 +74,7 @@
           </ul>
           <h5 id="warningDuplicateTopping"></h5>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 text-center">
           <h4>Currently Selected Size</h4>
           <p id="currentSize"></p>
         </div>
@@ -81,7 +82,7 @@
     </div>
     <div>
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 text-center">
           <h4>Pizzas Ordered</h4>
           <h8>Click on a name to see the details of the order</h8>
           <ul id="orderedPizzas">

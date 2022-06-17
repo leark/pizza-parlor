@@ -16,7 +16,7 @@
 
 ## Description
 
-_{This is a detailed description of your application. Give as much detail as needed to explain what the application does as well as any other information you want users or other developers to have.}_
+Pizza Parlor is a simple webpage where a customer can customize a pizza to their liking with different toppings and sizes and order them for pick-up. Currently ordered items are displayed at the bottom of the page and can be clicked to show the details of the order.
 
 ## Setup/Installation Requirements
 
@@ -30,8 +30,7 @@ _{This is a detailed description of your application. Give as much detail as nee
 
 ## Known Bugs
 
-* _Any known issues_
-* _should go here_
+* _No Known Issues_
 
 ## Tests
 
