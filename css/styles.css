@@ -1,3 +1,11 @@
 #currentlyAddedToppings li {
   cursor: pointer;
 }
+
+.orderLinks {
+  display: block;
+}
+
+.orders {
+  display: none;
+}

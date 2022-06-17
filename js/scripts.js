@@ -85,6 +85,7 @@ $(document).ready(function () {
   const pizzaOrders = new PizzaOrders();
   let pizza = new Pizza([]);
   attachToppingListeners(pizza);
+  attachOrderDetailListeners();
 
   // add topping button
   $('#addTopping').click(function (event) {
@@ -151,7 +152,7 @@ function getPizzaSize(pizza) {
 }
 
 function updateCurrentCost(pizza) {
-  $('#currentCost').text('Your pizza will cost: $' + pizza.calculateCost());
+  $('#currentCost').text('$' + pizza.calculateCost());
 }
 
 function updateCustomerName(pizza) {
@@ -160,10 +161,10 @@ function updateCustomerName(pizza) {
 }
 
 function updatePizzasOrdered(pizza, pizzaOrders) {
-  let order = $('<li></li>');
+  let order = $('<a class="orderLinks"></a>');
   order.text(pizza.customerName);
-  let orderDetail = $('<ul></ul>');
-  orderDetail.attr('id', pizza.customerName + pizzaOrders.numberOfOrders - 1);
+  let orderID = pizza.customerName + (pizzaOrders.numberOfOrders - 1);
+  let orderDetail = $(`<ul id=${orderID} class="orders"></ul>`);
   orderDetail.addClass('orderDetails');
   orderDetail.append($('<li>Toppings: ' + pizza.toppings + '</li>'));
   orderDetail.append($('<li>Size: ' + pizza.size + '</li>'));
@@ -184,6 +185,17 @@ function disableOrderButton() {
 function attachToppingListeners(pizza) {
   $('ul#currentlyAddedToppings').on('click', 'li', function () {
     removeTopping(this.id, pizza);
+  });
+}
+
+function attachOrderDetailListeners() {
+  $('#orderedPizzas').on('click', 'a', function () {
+    let order = $(this);
+    if (order.children().is(':visible')) {
+      order.children().slideToggle();
+    } else {
+      order.children().slideToggle();
+    }
   });
 }
 
