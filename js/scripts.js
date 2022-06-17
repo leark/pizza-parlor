@@ -16,7 +16,7 @@ Pizza.prototype.calculateCost = function () {
 
   // large means +5 cost
   // medium is +3 and small is +1 cost
-  switch (size) {
+  switch (this.size) {
     case 'Large':
       cost += 2;
     case 'Medium':
@@ -66,6 +66,10 @@ $(document).ready(function () {
           '</li>'
       ).appendTo('#currentlyAddedToppings');
     }
+    if (pizza.toppings.length > 0) {
+      pizza.setSize($('#size').val());
+      $('#currentCost').text('Your pizza will cost: $' + pizza.calculateCost());
+    }
   });
 
   $('#setSize').click(function (event) {
@@ -73,6 +77,6 @@ $(document).ready(function () {
     const size = $('#size').val();
     pizza.setSize(size);
     $('#currentSize').text(pizza.size);
-    $('#currentCost').text(pizza.calculateCost());
+    $('#currentCost').text('Your pizza will cost: $' + pizza.calculateCost());
   });
 });
