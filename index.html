@@ -21,22 +21,22 @@
               <option id="Artichokes">Artichokes</option>
               <option id="Arugula">Arugula</option>
               <option id="Basil">Basil</option>
-              <option id="Bell Peppers">Bell Peppers</option> 
-              <option id="Black Olives">Black Olives</option> 
+              <option id="BellPeppers">Bell Peppers</option> 
+              <option id="BlackOlives">Black Olives</option> 
               <option id="Chicken">Chicken</option>
               <option id="Chorizo">Chorizo</option>
-              <option id="Feta Cheese">Feta Cheese</option>
+              <option id="FetaCheese">Feta Cheese</option>
               <option id="Garlic">Garlic</option>
               <option id="Ham">Ham</option>
-              <option id="Kabanos (Polish sausage)">Kabanos (Polish sausage)</option>
+              <option id="Kabanos-Polishsausage">Kabanos (Polish sausage)</option>
               <option id="Kale">Kale</option>
               <option id="Mozzarella">Mozzarella</option>
-              <option id="Mushroom (Portobello)">Mushroom (Portobello)</option>
+              <option id="Mushroom-Portobello">Mushroom (Portobello)</option>
               <option id="Onion">Onion</option>
               <option id="Pepperoni" selected>Pepperoni</option>
               <option id="Potato">Potato</option>
               <option id="Prosciutto">Prosciutto</option>
-              <option id="Red Onions">Red Onions</option>
+              <option id="RedOnions">Red Onions</option>
               <option id="Rocket">Rocket</option>
               <option id="Spinach">Spinach</option>
               <option id="Tomatoes">Tomatoes</option>
@@ -51,7 +51,7 @@
               <option id="Large">Large</option>
             </select>
             <button id="setSize" class="btn btn-success">Set Size</button>
-            <span id="currentSize"></span>
+            <!-- <span id="currentSize"></span> -->
           </div>
           <h5 id="currentCost"></h5>
           <button id="order" class="btn btn-danger" type="submit" disabled>Order</button>
@@ -60,11 +60,17 @@
     </div>
     <div>
       <div class="row">
-        <div>
+        <div class="col-sm-6">
           <h4>Currently Added Toppings</h4>
+          <h8>You can click on toppings that appear here to remove them</h5>
           <ul id="currentlyAddedToppings">
             <li id="noTopping">No Toppings Selected</li>
           </ul>
+          <h5 id="warningDuplicateTopping"></h5>
+        </div>
+        <div class="col-sm-6">
+          <h4>Currently Selected Size</h4>
+          <p id="currentSize"></p>
         </div>
       </div>
     </div>

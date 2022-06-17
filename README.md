@@ -82,6 +82,19 @@ Test1: "It should remove topping in the Pizza object if it exists"
 Code: myPizza.removeTopping('extra cheese')
 Expected Output: Pizza { toppings: ["anchovies", "pineapple"], size: "large" }
 
+
+Describe: PizzaOrders()
+
+Test1: "It should return a PizzaOrders object with an array of Pizza objects and number of how many there are"
+Code: const pizzaOrders = new PizzaOrders(myPizza)
+Expected Output: PizzaOrders { orders: [{ toppings: ["anchovies", "pineapple"], size: "large" }], numberOfOrders: 1 }
+
+Describe: PizzaOrders.prototype.addOrder()
+
+Test1: "It should add Pizza object to PizzaOrders"
+Code: pizzaOrders.addPizza(myPizza)
+Expected Output: PizzaOrders { orders: [{ toppings: ["anchovies", "pineapple"], size: "large" }, { toppings: ["anchovies", "pineapple"], size: "large" }], numberOfOrders: 2 }
+
 ```
 
 ## License

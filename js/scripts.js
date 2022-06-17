@@ -11,7 +11,7 @@ Pizza.prototype.calculateCost = function () {
   // set base cost
   let cost = 4;
   // each toppings cost $1
-  cost += numberOfToppings;
+  cost += this.numberOfToppings;
 
   // large means +5 cost
   // medium is +3 and small is +1 cost
@@ -35,14 +35,17 @@ Pizza.prototype.addTopping = function (topping) {
 };
 
 Pizza.prototype.findToppingIndex = function (topping) {
-  return this.indexOf(topping);
+  return this.toppings.indexOf(topping);
 };
 
 Pizza.prototype.removeTopping = function (topping) {
   if (this.toppingExists(topping)) {
-    this.toppings.splice(this.toppings.findToppingIndex(topping), 1);
+    this.toppings.splice(this.findToppingIndex(topping), 1);
     this.numberOfToppings--;
+    // return true if removal was successful
+    return true;
   } else {
+    // return false if removal was unsuccessful
     return false;
   }
 };
@@ -59,54 +62,71 @@ Pizza.prototype.toppingExists = function (topping) {
   }
 };
 
+function PizzaOrders() {
+  this.orders = [];
+  this.numberOfOrders = 0;
+}
+
+PizzaOrders.prototype.addOrder = function (pizza) {
+  this.orders.push(pizza);
+  this.numberOfOrders++;
+};
+
 // User Interface Logic
 
 $(document).ready(function () {
+  const pizzaOrders = new PizzaOrders();
   let pizza = new Pizza([]);
-  attachToppingListeners();
+  attachToppingListeners(pizza);
 
   // add topping button
   $('#addTopping').click(function (event) {
     event.preventDefault();
-    const topping = $('#topping').val();
-    if (!pizza.toppingExists(topping)) {
+    // grab topping name (e.g. Bell Peppers)
+    const toppingName = $('#topping').val();
+    // grab topping ID (e.g. BellPeppers)
+    const toppingID = $('#topping').children(':selected').attr('id');
+
+    if (!pizza.toppingExists(toppingID)) {
       const noToppingExists = $('#noTopping');
       if (noToppingExists) {
-        noToppingExists.remove();
+        noToppingExists.hide();
       }
-      pizza.addTopping(topping);
-      const mostRecentToppingIndex = pizza.numberOfToppings - 1;
-      $(
-        '<li id="addedTopping' +
-          mostRecentToppingIndex +
-          '">' +
-          topping +
-          '</li>'
-      ).appendTo('#currentlyAddedToppings');
+      pizza.addTopping(toppingID);
+      $('<li id="added' + toppingID + '">' + toppingName + '</li>').appendTo(
+        '#currentlyAddedToppings'
+      );
     }
     if (pizza.numberOfToppings > 0) {
-      showCurrentCost(pizza);
+      getPizzaSize(pizza);
+      updateCurrentCost(pizza);
       enableOrderButton();
     }
   });
 
   $('#setSize').click(function (event) {
     event.preventDefault();
-    showCurrentCost(pizza);
+    getPizzaSize(pizza);
+    updateCurrentCost(pizza);
     enableOrderButton();
   });
 
   $('form#orderForm').submit(function (event) {
     event.preventDefault();
     disableOrderButton();
+    pizzaOrders.addOrder(pizza);
     pizza = new Pizza([]);
   });
 });
 
-function showCurrentCost(pizza) {
+// User Interface Logic
+function getPizzaSize(pizza) {
   const size = $('#size').val();
   pizza.setSize(size);
-  $('#currentSize').text(pizza.size);
+  $('#currentSize').text(size);
+}
+
+function updateCurrentCost(pizza) {
   $('#currentCost').text('Your pizza will cost: $' + pizza.calculateCost());
 }
 
@@ -118,10 +138,23 @@ function disableOrderButton() {
   $('#order').prop('disabled', true);
 }
 
-function attachToppingListeners() {
+// attach listeners for removing toppings
+function attachToppingListeners(pizza) {
   $('ul#currentlyAddedToppings').on('click', 'li', function () {
-    removeTopping(this.id);
+    removeTopping(this.id, pizza);
   });
 }
 
-function removeTopping() {}
+function removeTopping(addedToppingID, pizza) {
+  // only remove if there are toppings on the pizza
+  if (pizza.numberOfToppings !== 0) {
+    $('#' + addedToppingID).remove();
+    // remove 'added' part of the id with slice
+    pizza.removeTopping(addedToppingID.slice(5));
+    updateCurrentCost(pizza);
+    // if there are no more toppings show no toppings msg
+    if (pizza.numberOfToppings === 0) {
+      $('#noTopping').show();
+    }
+  }
+}
