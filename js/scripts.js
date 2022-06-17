@@ -2,17 +2,16 @@
 
 // create a pizza object with an array of toppings and size
 function Pizza(toppings, size) {
-  this.toppings = [];
+  this.toppings = toppings;
   this.size = size;
+  this.numberOfToppings = 0;
 }
 
 Pizza.prototype.calculateCost = function () {
   // set base cost
   let cost = 4;
-  for (topping in this.toppings) {
-    // add $1 for each topping
-    cost += 1;
-  }
+  // each toppings cost $1
+  cost += numberOfToppings;
 
   // large means +5 cost
   // medium is +3 and small is +1 cost
@@ -32,6 +31,7 @@ Pizza.prototype.calculateCost = function () {
 
 Pizza.prototype.addTopping = function (topping) {
   this.toppings.push(topping);
+  this.numberOfToppings++;
 };
 
 Pizza.prototype.setSize = function (size) {
@@ -48,7 +48,8 @@ Pizza.prototype.toppingExists = function (topping) {
 // User Interface Logic
 
 $(document).ready(function () {
-  let pizza = new Pizza();
+  let pizza = new Pizza([]);
+  attachToppingListeners();
 
   // add topping button
   $('#addTopping').click(function (event) {
@@ -59,9 +60,8 @@ $(document).ready(function () {
       if (noToppingExists) {
         noToppingExists.remove();
       }
-      console.log('Add topping: ' + topping);
       pizza.addTopping(topping);
-      const mostRecentToppingIndex = pizza.toppings.length - 1;
+      const mostRecentToppingIndex = pizza.numberOfToppings - 1;
       $(
         '<li id="addedTopping' +
           mostRecentToppingIndex +
@@ -70,7 +70,7 @@ $(document).ready(function () {
           '</li>'
       ).appendTo('#currentlyAddedToppings');
     }
-    if (pizza.toppings.length > 0) {
+    if (pizza.numberOfToppings > 0) {
       showCurrentCost(pizza);
       enableOrderButton();
     }
@@ -80,6 +80,12 @@ $(document).ready(function () {
     event.preventDefault();
     showCurrentCost(pizza);
     enableOrderButton();
+  });
+
+  $('form#orderForm').submit(function (event) {
+    event.preventDefault();
+    disableOrderButton();
+    pizza = new Pizza([]);
   });
 });
 
@@ -93,3 +99,9 @@ function showCurrentCost(pizza) {
 function enableOrderButton() {
   $('#order').prop('disabled', false);
 }
+
+function disableOrderButton() {
+  $('#order').prop('disabled', true);
+}
+
+function attachToppingListeners() {}
