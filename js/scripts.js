@@ -34,15 +34,29 @@ Pizza.prototype.addTopping = function (topping) {
   this.numberOfToppings++;
 };
 
+Pizza.prototype.findToppingIndex = function (topping) {
+  return this.indexOf(topping);
+};
+
+Pizza.prototype.removeTopping = function (topping) {
+  if (this.toppingExists(topping)) {
+    this.toppings.splice(this.toppings.findToppingIndex(topping), 1);
+    this.numberOfToppings--;
+  } else {
+    return false;
+  }
+};
+
 Pizza.prototype.setSize = function (size) {
   this.size = size;
 };
 
 Pizza.prototype.toppingExists = function (topping) {
-  if (this.toppings.find((element) => element === topping)) {
+  if (this.findToppingIndex(topping) !== -1) {
     return true;
+  } else {
+    return false;
   }
-  return false;
 };
 
 // User Interface Logic
@@ -104,4 +118,10 @@ function disableOrderButton() {
   $('#order').prop('disabled', true);
 }
 
-function attachToppingListeners() {}
+function attachToppingListeners() {
+  $('ul#currentlyAddedToppings').on('click', 'li', function () {
+    removeTopping(this.id);
+  });
+}
+
+function removeTopping() {}

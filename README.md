@@ -70,6 +70,18 @@ Test1: "It should return true if topping is already added to Pizza object"
 Code: myPizza.toppingExists('pineapple')
 Expected Output: true
 
+Describe: Pizza.prototype.findTopping()
+
+Test1: "It should return the index of topping in the Pizza object"
+Code: myPizza.findTopping('pineapple')
+Expected Output: 1
+
+Describe: Pizza.prototype.deleteTopping()
+
+Test1: "It should remove topping in the Pizza object if it exists"
+Code: myPizza.removeTopping('extra cheese')
+Expected Output: Pizza { toppings: ["anchovies", "pineapple"], size: "large" }
+
 ```
 
 ## License
