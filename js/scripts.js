@@ -6,12 +6,12 @@ function Pizza(toppings, size) {
   this.size = size;
   this.numberOfToppings = 0;
   this.customerName;
-  // base cost
-  this.cost = 4;
+  this.cost;
 }
 
 Pizza.prototype.calculateCost = function () {
-  let cost = this.cost;
+  // base cost
+  let cost = 4;
   // each toppings cost $1
   cost += this.numberOfToppings;
 
@@ -126,11 +126,24 @@ $(document).ready(function () {
     pizzaOrders.addOrder(pizza);
     updatePizzasOrdered(pizza, pizzaOrders);
     // clear fields
+
+    // remove all toppings from current toppings excpet for noTopping
+    let toppingsChildren = $('#currentlyAddedToppings').children();
+    for (let i = toppingsChildren.length - 1; i >= 0; i--) {
+      if (toppingsChildren[i].id !== 'noTopping') {
+        toppingsChildren[i].remove();
+      }
+    }
+    $('#noTopping').show();
+    $('#currentSize').text('');
+    $('#currentCost').text('');
+    // not clearing customer name on purpose in case they want to order again
     pizza = new Pizza([]);
   });
 });
 
 // User Interface Logic
+
 function getPizzaSize(pizza) {
   const size = $('#size').val();
   pizza.setSize(size);
@@ -151,8 +164,10 @@ function updatePizzasOrdered(pizza, pizzaOrders) {
   order.text(pizza.customerName);
   let orderDetail = $('<ul></ul>');
   orderDetail.attr('id', pizza.customerName + pizzaOrders.numberOfOrders - 1);
+  orderDetail.addClass('orderDetails');
   orderDetail.append($('<li>Toppings: ' + pizza.toppings + '</li>'));
   orderDetail.append($('<li>Size: ' + pizza.size + '</li>'));
+  orderDetail.append($('<li>Cost: $' + pizza.cost + '</li>'));
   order.append(orderDetail);
   $(order).appendTo('#orderedPizzas');
 }
