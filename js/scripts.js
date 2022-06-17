@@ -55,6 +55,10 @@ $(document).ready(function () {
     event.preventDefault();
     const topping = $('#topping').val();
     if (!pizza.toppingExists(topping)) {
+      const noToppingExists = $('#noTopping');
+      if (noToppingExists) {
+        noToppingExists.remove();
+      }
       console.log('Add topping: ' + topping);
       pizza.addTopping(topping);
       const mostRecentToppingIndex = pizza.toppings.length - 1;
@@ -68,12 +72,14 @@ $(document).ready(function () {
     }
     if (pizza.toppings.length > 0) {
       showCurrentCost(pizza);
+      enableOrderButton();
     }
   });
 
   $('#setSize').click(function (event) {
     event.preventDefault();
     showCurrentCost(pizza);
+    enableOrderButton();
   });
 });
 
@@ -82,4 +88,8 @@ function showCurrentCost(pizza) {
   pizza.setSize(size);
   $('#currentSize').text(pizza.size);
   $('#currentCost').text('Your pizza will cost: $' + pizza.calculateCost());
+}
+
+function enableOrderButton() {
+  $('#order').prop('disabled', false);
 }
