@@ -4,7 +4,7 @@ function Pizza(toppings, size) {
   this.size = size;
 }
 
-Pizza.prototype.calculateCost() {
+Pizza.prototype.calculateCost = function () {
   // set base cost
   let cost = 4;
   for (topping in toppings) {
@@ -15,11 +15,11 @@ Pizza.prototype.calculateCost() {
   // large means +5 cost
   // medium is +3 and small is +1 cost
   switch (size) {
-    case ('large'):
+    case 'large':
       cost += 2;
-    case ('medium'):
+    case 'medium':
       cost += 2;
-    case ('small'):
+    case 'small':
       cost += 1;
       break;
     default:
@@ -27,10 +27,10 @@ Pizza.prototype.calculateCost() {
   }
 
   return cost;
-}
+};
 
+Pizza.prototype.addTopping = function (topping) {
+  this.toppings.push(topping);
+};
 
-
-$(document).ready(function() {
-
-});
+$(document).ready(function () {});

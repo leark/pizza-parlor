@@ -42,6 +42,22 @@ Test1: "It should return a Pizza object with two properties for toppings and siz
 Code: const myPizza = new Pizza(["anchovies", "pineapple"], "medium");
 Expected Output: Pizza { toppings: ["anchovies", "pineapple"], size: "medium" }
 
+Describe: Pizza.prototype.calculateCost()
+
+Test1: "It should return 4 + 1 per topping"
+Code: myPizza.calculateCost() where myPizza has 2 toppings
+Expected Output: 6
+
+Test2: "It should return 4 + 1 per topping and +5 for large, +3 for medium, +1 for small pizza"
+Code: myPizza.calculateCost() where myPizza has 2 toppings and is medium
+Expected Output: 9
+
+Describe: Pizza.prototype.addTopping()
+
+Test1: "It should add topping to Pizza object"
+Code: myPizza.addTopping('extra cheese')
+Expected Output: Pizza { toppings: ["anchovies", "pineapple", "extra cheese"], size: "medium" }
+
 ```
 
 ## License
