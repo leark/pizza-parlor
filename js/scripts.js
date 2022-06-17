@@ -38,6 +38,13 @@ Pizza.prototype.setSize = function (size) {
   this.size = size;
 };
 
+Pizza.prototype.toppingExists = function (topping) {
+  if (this.toppings.find((element) => element === topping)) {
+    return true;
+  }
+  return false;
+};
+
 // User Interface Logic
 
 $(document).ready(function () {
@@ -47,11 +54,17 @@ $(document).ready(function () {
   $('#addTopping').click(function (event) {
     event.preventDefault();
     const topping = $('#topping').val();
-    console.log('Add topping: ' + topping);
-    pizza.addTopping(topping);
-    const mostRecentToppingIndex = pizza.toppings.length - 1;
-    $(
-      '<li id="addedTopping' + mostRecentToppingIndex + '">' + topping + '</li>'
-    ).appendTo('ul');
+    if (!pizza.toppingExists(topping)) {
+      console.log('Add topping: ' + topping);
+      pizza.addTopping(topping);
+      const mostRecentToppingIndex = pizza.toppings.length - 1;
+      $(
+        '<li id="addedTopping' +
+          mostRecentToppingIndex +
+          '">' +
+          topping +
+          '</li>'
+      ).appendTo('ul');
+    }
   });
 });

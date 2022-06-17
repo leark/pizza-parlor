@@ -64,6 +64,12 @@ Test1: "It should set size of Pizza object"
 Code: myPizza.setSize('large')
 Expected Output: Pizza { toppings: ["anchovies", "pineapple", "extra cheese"], size: "large" }
 
+Describe: Pizza.prototype.toppingExists()
+
+Test1: "It should return true if topping is already added to Pizza object"
+Code: myPizza.toppingExists('pineapple')
+Expected Output: true
+
 ```
 
 ## License
