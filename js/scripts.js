@@ -2,7 +2,7 @@
 
 // create a pizza object with an array of toppings and size
 function Pizza(toppings, size) {
-  this.toppings = toppings;
+  this.toppings = [];
   this.size = size;
 }
 
@@ -32,7 +32,6 @@ Pizza.prototype.calculateCost = function () {
 
 Pizza.prototype.addTopping = function (topping) {
   this.toppings.push(topping);
-  console.log(this.toppings);
 };
 
 Pizza.prototype.setSize = function (size) {
