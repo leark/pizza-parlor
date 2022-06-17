@@ -67,16 +67,19 @@ $(document).ready(function () {
       ).appendTo('#currentlyAddedToppings');
     }
     if (pizza.toppings.length > 0) {
-      pizza.setSize($('#size').val());
-      $('#currentCost').text('Your pizza will cost: $' + pizza.calculateCost());
+      showCurrentCost(pizza);
     }
   });
 
   $('#setSize').click(function (event) {
     event.preventDefault();
-    const size = $('#size').val();
-    pizza.setSize(size);
-    $('#currentSize').text(pizza.size);
-    $('#currentCost').text('Your pizza will cost: $' + pizza.calculateCost());
+    showCurrentCost(pizza);
   });
 });
+
+function showCurrentCost(pizza) {
+  const size = $('#size').val();
+  pizza.setSize(size);
+  $('#currentSize').text(pizza.size);
+  $('#currentCost').text('Your pizza will cost: $' + pizza.calculateCost());
+}
