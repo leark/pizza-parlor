@@ -82,6 +82,12 @@ Test1: "It should remove topping in the Pizza object if it exists"
 Code: myPizza.removeTopping('extra cheese')
 Expected Output: Pizza { toppings: ["anchovies", "pineapple"], size: "large" }
 
+Describe: Pizza.prototype.setCustomerName()
+
+Test1: "It should set the customerName of the Pizza object"
+Code: myPizza.customerName('Seung')
+Expected Output: Pizza { toppings: ["anchovies", "pineapple"], size: "large", customerName: 'Seung' }
+
 
 Describe: PizzaOrders()
 

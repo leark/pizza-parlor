@@ -5,6 +5,7 @@ function Pizza(toppings, size) {
   this.toppings = toppings;
   this.size = size;
   this.numberOfToppings = 0;
+  this.name;
 }
 
 Pizza.prototype.calculateCost = function () {
@@ -62,6 +63,10 @@ Pizza.prototype.toppingExists = function (topping) {
   }
 };
 
+Pizza.prototype.setName = function (name) {
+  this.name = name;
+};
+
 function PizzaOrders() {
   this.orders = [];
   this.numberOfOrders = 0;
@@ -100,6 +105,7 @@ $(document).ready(function () {
     if (pizza.numberOfToppings > 0) {
       getPizzaSize(pizza);
       updateCurrentCost(pizza);
+      updateCustomerName(pizza);
       enableOrderButton();
     }
   });
@@ -108,6 +114,7 @@ $(document).ready(function () {
     event.preventDefault();
     getPizzaSize(pizza);
     updateCurrentCost(pizza);
+    updateCustomerName(pizza);
     enableOrderButton();
   });
 
@@ -130,6 +137,11 @@ function updateCurrentCost(pizza) {
   $('#currentCost').text('Your pizza will cost: $' + pizza.calculateCost());
 }
 
+function updateCustomerName(pizza) {
+  const name = $('customerName').val();
+  pizza.setName(name);
+}
+
 function enableOrderButton() {
   $('#order').prop('disabled', false);
 }
@@ -139,7 +151,7 @@ function disableOrderButton() {
 }
 
 // attach listeners for removing toppings
-function attachToppingListeners(pizza) {
+function attachListeners(pizza) {
   $('ul#currentlyAddedToppings').on('click', 'li', function () {
     removeTopping(this.id, pizza);
   });
