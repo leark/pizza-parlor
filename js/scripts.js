@@ -9,7 +9,7 @@ function Pizza(toppings, size) {
 Pizza.prototype.calculateCost = function () {
   // set base cost
   let cost = 4;
-  for (topping in toppings) {
+  for (topping in this.toppings) {
     // add $1 for each topping
     cost += 1;
   }
@@ -64,7 +64,15 @@ $(document).ready(function () {
           '">' +
           topping +
           '</li>'
-      ).appendTo('ul');
+      ).appendTo('#currentlyAddedToppings');
     }
+  });
+
+  $('#setSize').click(function (event) {
+    event.preventDefault();
+    const size = $('#size').val();
+    pizza.setSize(size);
+    $('#currentSize').text(pizza.size);
+    $('#currentCost').text(pizza.calculateCost());
   });
 });

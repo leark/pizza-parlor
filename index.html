@@ -33,7 +33,7 @@
               <option id="Mozzarella">Mozzarella</option>
               <option id="Mushroom (Portobello)">Mushroom (Portobello)</option>
               <option id="Onion">Onion</option>
-              <option id="Pepperoni">Pepperoni</option>
+              <option id="Pepperoni" selected>Pepperoni</option>
               <option id="Potato">Potato</option>
               <option id="Prosciutto">Prosciutto</option>
               <option id="Red Onions">Red Onions</option>
@@ -47,18 +47,30 @@
             <label>Size</label>
             <select id="size">
               <option id="Small">Small</option>
-              <option id="Medium" default>Medium</option>
+              <option id="Medium" selected>Medium</option>
               <option id="Large">Large</option>
             </select>
+            <button id="setSize" class="btn btn-success">Set Size</button>
+            <span id="currentSize"></span>
           </div>
+          <h5 id="currentCost"></h5>
           <button id="order" class="btn btn-dark" type="submit" disabled>Order</button>
         </form>
       </div>
     </div>
     <div>
       <div class="row">
-        <h4>Currently Added Toppings</h4>
-        <ul id="currentlyAddedToppings">
+        <div>
+          <h4>Currently Added Toppings</h4>
+          <ul id="currentlyAddedToppings">
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="row">
+        <h4>Pizzas Ordered</h4>
+        <ul id="orderedPizzas">
         </ul>
       </div>
     </div>
