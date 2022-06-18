@@ -1,5 +1,15 @@
 body {
   font-size: calc(10px + 0.5vw);
+  background-image: url('../img/Lee\'s.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: calc(800px - 30vw);
+  background-position-x: calc(-200px + 80vw);
+}
+
+#header {
+  background-color: #006491;
+  color: white;
 }
 
 #currentlyAddedToppings li {
@@ -22,6 +32,12 @@ li {
 
 .orderLinks {
   display: block;
+  font-size: calc(15px + 1vw);
+  color: black;
+}
+
+a:active {
+  text-decoration: none;
 }
 
 .orders {
